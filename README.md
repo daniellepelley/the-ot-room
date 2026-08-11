@@ -42,6 +42,10 @@ rules, photo aspect ratios) are documented in [`docs/site.md`](docs/site.md).
 
 1. **Push to `main`** — the changed `site/` is deployed to **test** automatically.
 2. **Review** it at https://test.theotroom.co.uk.
-3. **Promote** — run **Actions → Promote Site (test → live)** and type `promote` to confirm. It copies
-   the exact bytes from the test bucket to the production bucket and invalidates the production CDN, so
-   what you reviewed on test is what goes live at https://www.theotroom.co.uk.
+3. **Promote** — run **Actions → Promote Site (test → live)** and type `promote` to confirm. The run
+   targets the protected `production` environment, so it **pauses for a manual approval**; once
+   approved it copies the exact bytes from the test bucket to the production bucket and invalidates the
+   production CDN, so what you reviewed on test is what goes live at https://www.theotroom.co.uk.
+
+   > The approval gate is the `production` environment's **Required reviewers** rule — set it up under
+   > **Settings → Environments → production** (see [`deploy/README.md`](deploy/README.md), step 4b).

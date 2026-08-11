@@ -54,10 +54,12 @@ terraform output
 
 ### 4. Wire the GitHub Actions variables
 
-Set these under **repository → Settings → Secrets and variables → Actions**, in the `test`
-environment (create it if it doesn't exist):
+Both workflows sync the test **and** live buckets (the promote job copies test → live), so the
+credentials and bucket/distribution identifiers are shared. Set them **at the repository level** —
+**repository → Settings → Secrets and variables → Actions**, on the *Repository* tab (not inside an
+environment) — so both the test and production jobs can read them without duplicating anything:
 
-**Variables**
+**Variables** (Repository → Variables)
 
 | Variable | Value (from `terraform output`) |
 |---|---|
@@ -68,23 +70,36 @@ environment (create it if it doesn't exist):
 | `WEBSITE_TEST_DISTRIBUTION_ID` | `test_distribution_id` |
 | `WEBSITE_LIVE_DISTRIBUTION_ID` | `live_distribution_id` |
 
-**Secrets**
+**Secrets** (Repository → Secrets)
 
 | Secret | Value |
 |---|---|
 | `AWS_SECRET_ACCESS_KEY` | the CI IAM user's secret access key |
 
-> Both workflows run under the `test` environment because that is where the shared CI credentials
-> live. If you want an approval gate before anything reaches production, create a separate
-> `production` environment with **required reviewers**, move the promote job to
-> `environment: production`, and add the same AWS variables/secret there.
+### 4b. Create the environments (and the production approval gate)
+
+Under **repository → Settings → Environments**, create two:
+
+- **`test`** — no protection rules needed. The `Deploy Site (test)` job runs under it and records each
+  deploy against it.
+- **`production`** — the `Promote Site (test → live)` job runs under this one. Add a protection rule
+  **Required reviewers** and list yourself (and anyone else who should sign off). With that in place,
+  every promote run **pauses and waits for a manual approval** before it copies anything to the live
+  bucket — that is the approval gate. Optionally also restrict the environment's deployment branches
+  to `main`.
+
+Because the credentials live at the repository level (step 4), you do **not** need to add any
+variables or secrets inside these environments — they exist purely to record deployments and to carry
+the production approval gate. (Environment-scoped values would override the repository ones if you
+ever need per-environment differences.)
 
 ### 5. First deploy, then promote
 
 - Push to `main` (or run **Actions → Deploy Site (test) → Run workflow**) → publishes to
   `https://test.theotroom.co.uk`.
-- Review it, then run **Actions → Promote Site (test → live)**, typing `promote` to confirm →
-  copies test to `https://www.theotroom.co.uk`.
+- Review it, then run **Actions → Promote Site (test → live)**, typing `promote` to confirm. The run
+  **waits for an approval** on the `production` environment; approve it (**Review deployments →
+  Approve and deploy**) and it copies test to `https://www.theotroom.co.uk`.
 
 ## CI credentials — required IAM permissions
 

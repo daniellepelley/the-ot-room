@@ -15,7 +15,9 @@ on:
 jobs:
   promote:
     if: ${{ inputs.confirm == 'promote' }}
-    environment: test
+    # The production environment carries the approval gate: give it required reviewers in the repo
+    # settings and this job pauses for a manual approval before it copies anything to live.
+    environment: production
     runs-on: ubuntu-latest
     env:
       AWS_ACCESS_KEY_ID: ${{ vars.AWS_ACCESS_KEY_ID }}
