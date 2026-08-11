@@ -2,7 +2,9 @@
 #
 # Provision The OT Room hosting WITHOUT Terraform, using only the AWS CLI.
 # Designed to be run in AWS CloudShell (browser terminal — AWS CLI + jq already installed,
-# credentials already loaded). Run it from the repo root so it can read deploy/site-router.js.
+# credentials already loaded). Self-contained: it does NOT need the repo cloned — the CloudFront
+# function code is embedded below. Just upload this one file to CloudShell (Actions -> Upload file)
+# and run it, or paste its contents into a file there.
 #
 # It builds the same stack as deploy/*.tf:
 #   Route 53 hosted zone, an ACM cert (us-east-1), two private S3 buckets, an Origin Access Control,
@@ -144,13 +146,36 @@ else
 fi
 
 # ---- 4. Router CloudFront function ----------------------------------------------------------------
+# The function code is embedded here so this script is self-contained — it does NOT need the repo
+# checked out in CloudShell. (It mirrors deploy/site-router.js.) apex -> www 301 + directory-index.
+cat > /tmp/site-router.js <<'JS'
+function handler(event) {
+    var request = event.request;
+    var host = request.headers.host.value;
+    if (host === 'theotroom.co.uk') {
+        return {
+            statusCode: 301,
+            statusDescription: 'Moved Permanently',
+            headers: { location: { value: 'https://www.theotroom.co.uk' + request.uri } }
+        };
+    }
+    var uri = request.uri;
+    if (uri.endsWith('/')) {
+        request.uri = uri + 'index.html';
+    } else if (!uri.split('/').pop().includes('.')) {
+        request.uri = uri + '/index.html';
+    }
+    return request;
+}
+JS
+
 if aws cloudfront describe-function --name "${FUNC_NAME}" >/dev/null 2>&1; then
   echo "Function ${FUNC_NAME} already exists."
 else
   echo "Creating the router function ..."
   aws cloudfront create-function --name "${FUNC_NAME}" \
     --function-config "Comment=apex->www redirect + index rewrite,Runtime=cloudfront-js-2.0" \
-    --function-code fileb://deploy/site-router.js >/dev/null
+    --function-code fileb:///tmp/site-router.js >/dev/null
 fi
 # publish the latest code
 FETAG="$(aws cloudfront describe-function --name "${FUNC_NAME}" --query ETag --output text)"
