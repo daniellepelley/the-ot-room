@@ -29,8 +29,13 @@ docs/site.md                the site's own authoring & design-system guide
 
 `www.theotroom.co.uk` is the canonical production host; the bare apex `theotroom.co.uk` 301-redirects
 to it. Both sites are private S3 buckets served over HTTPS through CloudFront (with a Route 53 hosted
-zone whose nameservers live at GoDaddy). Full infrastructure and one-time setup steps — including
-pointing GoDaddy at Route 53 — are in [`deploy/README.md`](deploy/README.md).
+zone whose nameservers live at GoDaddy).
+
+## First-time setup
+
+The one-time manual setup — AWS credentials, Terraform, pointing GoDaddy at Route 53, and the GitHub
+variables/environments — is a step-by-step walkthrough in **[`docs/manual-setup.md`](docs/manual-setup.md)**.
+The infrastructure reference (what Terraform builds and why) is in [`deploy/README.md`](deploy/README.md).
 
 ## Editing the site
 
