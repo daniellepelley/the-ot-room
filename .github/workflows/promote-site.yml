@@ -34,4 +34,4 @@ jobs:
           --paths "/*"
 
     - name: Summary
-      run: echo "Promoted test -> https://theotroom.co.uk" >> "$GITHUB_STEP_SUMMARY"
+      run: echo "Promoted test -> https://www.theotroom.co.uk" >> "$GITHUB_STEP_SUMMARY"

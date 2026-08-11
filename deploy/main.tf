@@ -111,12 +111,12 @@ resource "aws_cloudfront_origin_access_control" "s3" {
 }
 
 # ---------------------------------------------------------------------------------------------------
-# The shared viewer-request function: www -> apex 301 + directory-index rewrite (see site-router.js).
+# The shared viewer-request function: apex -> www 301 + directory-index rewrite (see site-router.js).
 # ---------------------------------------------------------------------------------------------------
 resource "aws_cloudfront_function" "router" {
   name    = "the-ot-room-router"
   runtime = "cloudfront-js-2.0"
-  comment = "www->apex redirect + directory index.html rewrite"
+  comment = "apex->www redirect + directory index.html rewrite"
   publish = true
   code    = file("${path.module}/site-router.js")
 }

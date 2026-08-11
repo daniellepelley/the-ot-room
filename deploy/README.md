@@ -4,9 +4,14 @@ Infrastructure for The OT Room website on AWS:
 
 | URL | Serves | Origin |
 |---|---|---|
-| `https://theotroom.co.uk` | production site | `the-ot-room-live` bucket, via the prod CloudFront distribution |
-| `https://www.theotroom.co.uk` | 301 → `https://theotroom.co.uk` | (CloudFront function on the prod distribution) |
+| `https://www.theotroom.co.uk` | production site (canonical) | `the-ot-room-live` bucket, via the prod CloudFront distribution |
+| `https://theotroom.co.uk` | 301 → `https://www.theotroom.co.uk` | (CloudFront function on the prod distribution) |
 | `https://test.theotroom.co.uk` | test / staging site | `the-ot-room-test` bucket, via the test CloudFront distribution |
+
+> The site is authored with `www` as its canonical host (the `canonical`/`og:url` tags, `sitemap.xml`
+> and `robots.txt` all use `www.theotroom.co.uk`), so `www` is primary and the bare apex redirects to
+> it. Both hostnames are aliases on the production distribution and both resolve in Route 53; the
+> redirect is done by the shared CloudFront function.
 
 Each bucket is **private** and fronted by CloudFront with an ACM certificate, so every page is served
 over HTTPS. Buckets are never public; CloudFront reaches them via Origin Access Control (OAC). This is
@@ -79,7 +84,7 @@ environment (create it if it doesn't exist):
 - Push to `main` (or run **Actions → Deploy Site (test) → Run workflow**) → publishes to
   `https://test.theotroom.co.uk`.
 - Review it, then run **Actions → Promote Site (test → live)**, typing `promote` to confirm →
-  copies test to `https://theotroom.co.uk`.
+  copies test to `https://www.theotroom.co.uk`.
 
 ## CI credentials — required IAM permissions
 

@@ -1,27 +1,549 @@
-<!doctype html>
-<!-- Shared 404 page. Both CloudFront distributions map a missing object (S3 403 behind OAC) here. -->
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en-GB">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Page not found &middot; The OT Room</title>
-  <style>
-    :root { color-scheme: light dark; }
-    body {
-      margin: 0; min-height: 100vh; display: grid; place-items: center;
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-      background: #f4f1ec; color: #2f2a25; text-align: center; padding: 2rem;
-    }
-    main { max-width: 34rem; }
-    h1 { font-size: clamp(2rem, 6vw, 3rem); margin: 0 0 .5rem; letter-spacing: -0.02em; }
-    p { font-size: 1.1rem; line-height: 1.6; opacity: .8; }
-    a { color: inherit; }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page not found — The OT Room</title>
+<meta name="description" content="Research, equipment and notes from practice, from Amy at The OT Room. Written for families and school staff.">
+
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta name="theme-color" content="#12383F">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The OT Room">
+<meta property="og:title" content="The Reading Room — The OT Room">
+<meta property="og:description" content="Research, equipment and notes from practice, written for families and school staff.">
+<meta property="og:url" content="https://www.theotroom.co.uk/reading-room.html">
+<meta property="og:image" content="https://www.theotroom.co.uk/assets/reading-room.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --petrol:#12383F;
+  --petrol-70:#456A70;
+  --petrol-25:#A9BFC1;
+  --paper:#EFF2EF;
+  --mist:#DDE8E3;
+  --ochre:#B87A1C;
+  --rule:#C8D5D2;
+  --card:#FFFFFF;
+
+  --measure:1120px;
+  --gut:clamp(20px, 5vw, 56px);
+}
+
+*,*::before,*::after{ box-sizing:border-box; margin:0; padding:0 }
+html{ scroll-behavior:smooth; -webkit-text-size-adjust:100% }
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto }
+  *{ animation:none !important; transition:none !important }
+}
+body{
+  font-family:'Karla',system-ui,sans-serif;
+  color:var(--petrol);
+  background:var(--paper);
+  font-size:clamp(15.5px,1.05vw,17px);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+img,svg{ max-width:100%; display:block }
+a{ color:inherit }
+
+.wrap{ width:100%; max-width:var(--measure); margin:0 auto; padding:0 var(--gut) }
+
+/* ---------- the signature: handwriting guide rules ---------- */
+.guide{ position:relative; display:block; line-height:1 }
+.guide i{ position:absolute; left:0; right:0; display:block; pointer-events:none }
+.guide .asc { top:11%;   border-top:1px solid var(--rule) }
+.guide .mid { top:40%;   border-top:1px dashed var(--ochre); opacity:.55 }
+.guide .base{ top:86%;   border-top:2px solid var(--petrol) }
+.guide em{ position:relative; font-style:normal }
+
+.wordmark{
+  font-family:'Fraunces',Georgia,serif; font-weight:600;
+  font-variation-settings:'SOFT' 0,'WONK' 0;
+  letter-spacing:-.015em;
+}
+.at{ color:var(--ochre); font-size:1.22em; line-height:0;
+     padding:0 .03em; vertical-align:-.05em }
+
+/* ---------- masthead ---------- */
+.masthead{
+  position:sticky; top:0; z-index:60;
+  background:rgba(239,242,239,.94);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--rule);
+}
+.masthead > .wrap{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:24px; min-height:64px;
+}
+.mh-name{ font-size:clamp(15px,1.5vw,19px); white-space:nowrap }
+nav ul{ display:flex; gap:clamp(14px,2vw,30px); list-style:none }
+nav a{
+  text-decoration:none; font-size:13.5px; font-weight:500;
+  color:var(--petrol-70); padding:6px 0; position:relative;
+}
+nav a::after{
+  content:''; position:absolute; left:0; right:0; bottom:2px;
+  border-bottom:2px solid var(--ochre);
+  transform:scaleX(0); transform-origin:left; transition:transform .22s ease;
+}
+nav a:hover::after, nav a:focus-visible::after{ transform:scaleX(1) }
+.mh-cta{
+  font-size:13.5px; font-weight:700; text-decoration:none;
+  border:1.5px solid var(--petrol); border-radius:999px;
+  padding:7px 16px; white-space:nowrap; transition:background .2s,color .2s;
+}
+.mh-cta:hover{ background:var(--petrol); color:var(--paper) }
+nav li{ position:relative }
+.subtoggle{
+  text-decoration:none;
+  font:inherit; font-size:13.5px; font-weight:500; color:var(--petrol-70);
+  background:none; border:0; padding:6px 0; cursor:pointer;
+  display:inline-flex; align-items:center; gap:6px;
+}
+.chev{
+  width:7px; height:7px; border-right:1.6px solid currentColor;
+  border-bottom:1.6px solid currentColor; transform:rotate(45deg) translate(-2px,-2px);
+  transition:transform .2s ease;
+}
+.subtoggle[aria-expanded="true"]{ color:var(--petrol) }
+.subtoggle[aria-expanded="true"] .chev{ transform:rotate(225deg) translate(-2px,-2px) }
+.submenu{
+  position:absolute; top:calc(100% + 12px); left:-18px; display:none;
+  flex-direction:column; gap:0; min-width:232px; z-index:80;
+  background:var(--card); border:1px solid var(--rule); border-radius:3px;
+  padding:8px; box-shadow:0 12px 28px rgba(18,56,63,.10);
+}
+.has-sub:hover .submenu,
+.has-sub:focus-within .submenu{ display:flex }
+.submenu a{ display:block; padding:9px 12px; border-radius:2px; font-size:14px }
+.submenu a::after{ display:none }
+.submenu a:hover{ background:var(--mist); color:var(--petrol) }
+
+.burger{ display:none; background:none; border:0; cursor:pointer; padding:8px 4px }
+.burger span{ display:block; width:22px; height:2px; background:var(--petrol); margin:4px 0;
+              transition:transform .22s ease, opacity .2s ease }
+.burger[aria-expanded="true"] span:nth-child(1){ transform:translateY(6px) rotate(45deg) }
+.burger[aria-expanded="true"] span:nth-child(2){ opacity:0 }
+.burger[aria-expanded="true"] span:nth-child(3){ transform:translateY(-6px) rotate(-45deg) }
+
+.mobilenav{ border-top:1px solid var(--rule); background:var(--paper); padding:12px 0 20px }
+.mobilenav a{ display:block; padding:11px 0; text-decoration:none; font-weight:500;
+              border-bottom:1px solid var(--rule) }
+.mobilenav a:last-child{ border-bottom:0 }
+.mn-group{ font-size:11px; font-weight:700; letter-spacing:.18em; text-transform:uppercase;
+           color:var(--ochre); padding:16px 0 4px }
+.mobilenav a.mn-group-link{ font-size:11px; font-weight:700; letter-spacing:.18em;
+           text-transform:uppercase; color:var(--ochre); padding:16px 0 6px; border-bottom:0 }
+.mobilenav a.mn-sub{ padding-left:16px; color:var(--petrol-70) }
+
+@media (max-width:960px){
+  nav{ display:none }
+  .mh-cta{ display:none }
+  .burger{ display:block }
+}
+@media (min-width:961px){ .mobilenav{ display:none !important } }
+
+:focus-visible{ outline:2.5px solid var(--ochre); outline-offset:3px; border-radius:2px }
+
+/* ---------- hero ---------- */
+.hero{ padding:clamp(46px,7vw,92px) 0 clamp(38px,5vw,64px) }
+.eyebrow{
+  font-size:11.5px; font-weight:700; letter-spacing:.22em;
+  text-transform:uppercase; color:var(--ochre); margin-bottom:clamp(20px,3vw,34px);
+}
+.hero-name{ font-size:clamp(25px,7.3vw,92px); margin-bottom:clamp(26px,4vw,44px) }
+.hero-name em{ white-space:nowrap }
+.hero-body{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(24px,4vw,64px); align-items:center }
+.hero-copy{ padding-left:clamp(0px,5vw,86px) }
+@media (max-width:860px){ .hero-body{ grid-template-columns:1fr; align-items:start }
+  .hero-copy{ padding-left:0 } }
+.hero-lead{
+  font-family:'Fraunces',Georgia,serif; font-weight:400;
+  font-variation-settings:'SOFT' 0,'WONK' 0;
+  font-size:clamp(19px,2.3vw,29px); line-height:1.4;
+  max-width:24ch; margin-bottom:12px;
+}
+.hero-sub{ color:var(--petrol-70); max-width:52ch; margin-bottom:clamp(26px,3.5vw,38px) }
+
+/* two doors */
+/* hero portrait */
+.hero-photo{ position:relative; margin:0 }
+.hero-photo img{
+  width:100%; height:auto; aspect-ratio:5/4; object-fit:cover;
+  border-radius:3px; display:block;
+}
+.hero-photo::after{
+  content:''; position:absolute; left:0; right:0; bottom:-14px;
+  border-bottom:2px solid var(--petrol);
+}
+@media (max-width:860px){
+  .hero-photo{ margin-top:10px }
+  .hero-photo::after{ display:none }
+}
+
+
+/* ---------- section furniture ---------- */
+section{ padding:clamp(48px,6.5vw,88px) 0; scroll-margin-top:70px }
+.band{ background:var(--card) }
+.band-mist{ background:var(--mist) }
+
+.sec-head{ margin-bottom:clamp(28px,3.6vw,44px) }
+.sec-kicker{
+  font-size:11.5px; font-weight:700; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--ochre); margin-bottom:12px;
+}
+.sec-title{
+  position:relative; z-index:0;
+  font-family:'Fraunces',Georgia,serif; font-weight:600;
+  font-variation-settings:'SOFT' 0,'WONK' 0;
+  font-size:clamp(26px,3.6vw,42px); line-height:1.15;
+  padding:0 0 .30em;
+  /* dashed midline, set at the top of the x-height */
+  background-image:repeating-linear-gradient(90deg,
+    rgba(184,122,28,.55) 0 6px, transparent 6px 12px);
+  background-size:100% 1px;
+  background-position:0 .475em;
+  background-repeat:no-repeat;
+}
+.sec-title::before,
+.sec-title::after{ content:''; position:absolute; left:0; right:0; z-index:-1; display:block }
+.sec-title::before{ top:.185em; border-top:1px solid var(--rule) }   /* ascender line */
+.sec-title::after { top:.935em; border-top:2px solid var(--petrol) } /* baseline */
+
+/* titles that wrap can't sit on a single ruled line — fall back to the baseline only */
+@media (max-width:700px){
+  .sec-title{ background-image:none; padding-bottom:.42em }
+  .sec-title::before{ display:none }
+}
+
+.sec-intro{ margin-top:16px; color:var(--petrol-70); max-width:60ch }
+
+/* ---------- areas of practice ---------- */
+.areas{ display:grid; gap:clamp(20px,2.6vw,32px) clamp(24px,3.4vw,52px);
+        grid-template-columns:repeat(3,1fr) }
+@media (max-width:1000px){ .areas{ grid-template-columns:repeat(2,1fr) } }
+@media (max-width:660px){ .areas{ grid-template-columns:1fr } }
+.area{ border-top:1px solid var(--rule); padding-top:18px }
+.area h3{
+  font-family:'Fraunces',Georgia,serif; font-weight:600;
+  font-variation-settings:'SOFT' 0,'WONK' 0;
+  font-size:clamp(17px,1.5vw,20px); line-height:1.25; margin-bottom:10px;
+}
+.area p{ font-size:14.5px; color:var(--petrol-70); line-height:1.6 }
+
+/* ---------- steps ---------- */
+.steps{ display:grid; gap:clamp(18px,2.4vw,28px); grid-template-columns:repeat(3,1fr); counter-reset:s }
+@media (max-width:760px){ .steps{ grid-template-columns:1fr } }
+.step{ counter-increment:s; position:relative; padding-top:22px; border-top:2px solid var(--petrol) }
+.step::before{
+  content:counter(s,decimal-leading-zero);
+  font-family:'Fraunces',Georgia,serif; font-weight:600;
+  font-variation-settings:'SOFT' 0,'WONK' 0;
+  font-size:13px; color:var(--ochre); letter-spacing:.06em;
+  display:block; margin-bottom:10px;
+}
+.step h3{
+  font-family:'Fraunces',Georgia,serif; font-weight:600; font-size:20px;
+  font-variation-settings:'SOFT' 0,'WONK' 0; margin-bottom:8px;
+}
+.step p{ font-size:14.5px; color:var(--petrol-70) }
+
+/* ---------- assessment & support ---------- */
+.terms-band{ margin-top:clamp(26px,3vw,40px); border-top:2px solid var(--petrol); padding-top:18px }
+.terms-band .fees-line{ font-size:15px; line-height:1.55; color:var(--petrol-70);
+                        margin-bottom:14px; max-width:70ch }
+.terms-band .fees-line b{ color:var(--petrol) }
+.terms-band h3{
+  font-family:'Fraunces',Georgia,serif; font-weight:600; font-size:11.5px;
+  font-variation-settings:'SOFT' 0,'WONK' 0;
+  letter-spacing:.18em; text-transform:uppercase; color:var(--ochre); margin-bottom:12px;
+}
+.terms-band ul{ list-style:none; display:grid; gap:10px clamp(24px,3.4vw,52px);
+                grid-template-columns:repeat(2,1fr) }
+@media (max-width:760px){ .terms-band ul{ grid-template-columns:1fr } }
+.terms-band li{ position:relative; padding-left:22px; font-size:14.5px; line-height:1.55;
+                color:var(--petrol-70) }
+.terms-band li::before{ content:''; position:absolute; left:0; top:.62em;
+                        width:11px; border-top:2px solid var(--ochre) }
+.terms-band b{ color:var(--petrol) }
+
+.offer-grid{ display:grid; gap:clamp(20px,2.6vw,32px) clamp(24px,3.4vw,52px);
+             grid-template-columns:repeat(2,1fr) }
+@media (max-width:760px){ .offer-grid{ grid-template-columns:1fr } }
+.offer{ border-top:1px solid var(--rule); padding-top:18px }
+.offer h3{
+  font-family:'Fraunces',Georgia,serif; font-weight:600;
+  font-variation-settings:'SOFT' 0,'WONK' 0;
+  font-size:clamp(17px,1.5vw,20px); line-height:1.25; margin-bottom:10px;
+}
+.offer p{ font-size:14.5px; color:var(--petrol-70); line-height:1.6 }
+
+.note-band{
+  margin-top:clamp(26px,3vw,40px); background:var(--mist);
+  border-left:3px solid var(--ochre); border-radius:0 3px 3px 0;
+  padding:clamp(18px,2.2vw,26px) clamp(20px,2.4vw,30px);
+}
+.note-band p{ font-size:15px; line-height:1.6; max-width:78ch }
+.note-band b{ color:var(--ochre) }
+
+/* ---------- about ---------- */
+.about-grid{ display:grid; gap:clamp(26px,4vw,60px); grid-template-columns:1.15fr .85fr;
+             align-items:start }
+@media (max-width:860px){ .about-grid{ grid-template-columns:1fr } }
+.about-grid p{ max-width:56ch; margin-bottom:16px; color:var(--petrol-70) }
+.about-grid p:last-child{ margin-bottom:0 }
+.about-grid a{ color:var(--petrol); text-decoration:none;
+               border-bottom:1.5px solid var(--ochre); font-weight:500 }
+.about-grid a:hover{ color:var(--ochre) }
+.about-lead{
+  font-family:'Fraunces',Georgia,serif; font-weight:400;
+  font-variation-settings:'SOFT' 0,'WONK' 0;
+  font-size:clamp(18px,2vw,23px); line-height:1.4;
+  color:var(--petrol) !important; max-width:34ch !important; margin-bottom:20px !important;
+}
+.about-photo{ position:relative; margin:0 }
+.about-photo img{
+  width:100%; height:auto; aspect-ratio:4/5; object-fit:cover;
+  border-radius:3px; display:block;
+}
+.about-photo::after{
+  content:''; position:absolute; left:0; right:0; bottom:-14px;
+  border-bottom:2px solid var(--petrol);
+}
+@media (max-width:860px){
+  .about-photo{ max-width:320px }
+  .about-photo::after{ display:none }
+}
+
+/* ---------- reading room teaser ---------- */
+.rr-teaser{ display:grid; gap:clamp(26px,3.6vw,56px); grid-template-columns:1fr 1fr;
+            align-items:center }
+@media (max-width:860px){ .rr-teaser{ grid-template-columns:1fr } }
+.rr-teaser-copy{ margin-top:18px; max-width:44ch; color:var(--petrol-70); line-height:1.6 }
+.rr-teaser-link{ margin-top:20px }
+.rr-teaser-link a{ font-weight:700; text-decoration:none; font-size:15px;
+                   border-bottom:2px solid var(--ochre); padding-bottom:3px;
+                   transition:color .2s }
+.rr-teaser-link a:hover{ color:var(--ochre) }
+.rr-teaser-photo{ display:block; position:relative; border-radius:3px }
+.rr-teaser-photo img{
+  width:100%; height:auto; aspect-ratio:3/2; object-fit:cover;
+  border-radius:3px; display:block; transition:opacity .25s;
+}
+.rr-teaser-photo:hover img{ opacity:.9 }
+.rr-teaser-photo::after{
+  content:''; position:absolute; left:0; right:0; bottom:-14px;
+  border-bottom:2px solid var(--petrol);
+}
+@media (max-width:860px){ .rr-teaser-photo::after{ display:none } }
+
+/* ---------- contact ---------- */
+.contact-grid{ display:grid; gap:clamp(24px,3.4vw,48px); grid-template-columns:1.1fr .9fr }
+@media (max-width:860px){ .contact-grid{ grid-template-columns:1fr } }
+.bigmail{
+  font-family:'Fraunces',Georgia,serif; font-weight:600;
+  font-variation-settings:'SOFT' 0,'WONK' 0;
+  font-size:clamp(20px,2.7vw,32px); text-decoration:none;
+  display:inline-block; border-bottom:2px solid var(--ochre);
+  padding-bottom:4px; word-break:break-word;
+}
+.bigmail:hover{ color:var(--ochre) }
+.dl{ display:flex; flex-direction:column; gap:16px; margin-top:4px }
+.dl div{ border-top:1px solid var(--rule); padding-top:12px }
+.dl dt{ font-size:11px; font-weight:700; letter-spacing:.16em;
+        text-transform:uppercase; color:var(--ochre); margin-bottom:5px }
+.dl dd{ font-size:15px }
+
+/* ---------- footer ---------- */
+footer{ background:var(--petrol); color:var(--paper); padding:clamp(40px,5vw,64px) 0 32px }
+footer .f-name{ font-size:clamp(20px,2.4vw,28px); margin-bottom:22px }
+footer .f-name .at{ color:#E2A94A }
+footer a{ color:var(--paper) }
+.f-grid{ display:flex; flex-wrap:wrap; gap:28px 56px; padding-top:26px;
+         border-top:1px solid rgba(239,242,239,.22) }
+.f-grid div{ min-width:150px }
+.f-grid dt{ font-size:10.5px; font-weight:700; letter-spacing:.16em;
+            text-transform:uppercase; color:#E2A94A; margin-bottom:6px }
+.f-grid dd{ font-size:14px; color:rgba(239,242,239,.85); line-height:1.55 }
+.f-legal{ margin-top:34px; font-size:12px; color:rgba(239,242,239,.55) }
+</style>
+
+<style>
+/* ---------- reading room page ---------- */
+.rr-hero{ padding:clamp(40px,5.5vw,74px) 0 clamp(30px,4vw,48px) }
+.rr-title{
+  position:relative; z-index:0;
+  font-family:'Fraunces',Georgia,serif; font-weight:600;
+  font-variation-settings:'SOFT' 0,'WONK' 0;
+  font-size:clamp(32px,5.4vw,60px); line-height:1.15;
+  padding:0 0 .30em;
+  background-image:repeating-linear-gradient(90deg,
+    rgba(184,122,28,.55) 0 7px, transparent 7px 14px);
+  background-size:100% 1px;
+  background-position:0 .475em;
+  background-repeat:no-repeat;
+}
+.rr-title::before,
+.rr-title::after{ content:''; position:absolute; left:0; right:0; z-index:-1; display:block }
+.rr-title::before{ top:.185em; border-top:1px solid var(--rule) }
+.rr-title::after { top:.935em; border-top:2px solid var(--petrol) }
+@media (max-width:700px){
+  .rr-title{ background-image:none; padding-bottom:.42em }
+  .rr-title::before{ display:none }
+}
+.rr-standfirst{
+  margin-top:20px; max-width:62ch; color:var(--petrol-70);
+  font-size:clamp(15.5px,1.2vw,17px); line-height:1.62;
+}
+.rr-figure{ position:relative; margin:clamp(30px,4vw,52px) 0 0 }
+.rr-figure img{
+  width:100%; height:auto; aspect-ratio:3/2; object-fit:cover;
+  border-radius:3px; display:block;
+}
+.rr-figure::after{
+  content:''; position:absolute; left:0; right:0; bottom:-14px;
+  border-bottom:2px solid var(--petrol);
+}
+.strands{ display:grid; gap:clamp(24px,3vw,44px); grid-template-columns:repeat(3,1fr) }
+@media (max-width:860px){ .strands{ grid-template-columns:1fr } }
+.strand{ border-top:2px solid var(--petrol); padding-top:18px; scroll-margin-top:96px }
+.strand h2{
+  font-family:'Fraunces',Georgia,serif; font-weight:600;
+  font-variation-settings:'SOFT' 0,'WONK' 0;
+  font-size:clamp(18px,1.7vw,22px); line-height:1.2; margin-bottom:10px;
+}
+.strand p{ font-size:14.5px; color:var(--petrol-70); line-height:1.6 }
+.soon{
+  display:inline-block; margin-top:14px; font-size:10.5px; font-weight:700;
+  letter-spacing:.16em; text-transform:uppercase; color:var(--ochre);
+}
+.rr-back{ margin-top:clamp(36px,4.4vw,60px); padding-top:22px; border-top:1px solid var(--rule) }
+.rr-back a{ font-weight:700; text-decoration:none;
+            border-bottom:2px solid var(--ochre); padding-bottom:2px }
+.rr-back a:hover{ color:var(--ochre) }
+</style>
+
 </head>
 <body>
-  <main>
-    <h1>404</h1>
-    <p>We couldn&rsquo;t find that page. <a href="/">Return home</a>.</p>
-  </main>
+
+<header class="masthead">
+  <div class="wrap">
+    <a href="/#top" class="wordmark mh-name" style="text-decoration:none">Amy <b class="at">@</b>The OT Room</a>
+    <nav aria-label="Main">
+      <ul>
+        <li><a href="/#help">How I can help</a></li>
+        <li><a href="/#how">How it works</a></li>
+        <li><a href="/#support">Assessment &amp; support</a></li>
+        <li class="has-sub">
+          <button type="button" class="subtoggle" aria-expanded="false" aria-controls="submenu-reading">
+            The Reading Room <span class="chev" aria-hidden="true"></span>
+          </button>
+          <ul id="submenu-reading" class="submenu">
+            <li><a href="#research">Research &amp; reading</a></li>
+            <li><a href="#equipment">Equipment &amp; resources</a></li>
+            <li><a href="#notes">Notes from practice</a></li>
+          </ul>
+        </li>
+        <li><a href="/#about">About</a></li>
+      </ul>
+    </nav>
+    <a class="mh-cta" href="/#contact">Get in touch</a>
+    <button type="button" class="burger" aria-expanded="false" aria-controls="mobilenav" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobilenav" id="mobilenav" hidden>
+    <div class="wrap">
+      <a href="/#help">How I can help</a>
+      <a href="/#how">How it works</a>
+      <a href="/#support">Assessment &amp; support</a>
+      <p class="mn-group">The Reading Room</p>
+      <a href="#research" class="mn-sub">Research &amp; reading</a>
+      <a href="#equipment" class="mn-sub">Equipment &amp; resources</a>
+      <a href="#notes" class="mn-sub">Notes from practice</a>
+      <a href="/#about">About</a>
+      <a href="/#contact">Get in touch</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="rr-hero">
+    <div class="wrap">
+      <h1 class="rr-title">Page not found</h1>
+      <p class="rr-standfirst">That page does not exist, or it has moved. The links above will
+      take you back, or you can start again from the home page.</p>
+      <p class="rr-back" style="border-top:0;margin-top:26px;padding-top:0">
+        <a href="/">&larr;&ensp;Back to The OT Room</a></p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="wordmark f-name">Amy <b class="at">@</b>The OT Room</p>
+    <dl class="f-grid">
+      <div><dt>Contact</dt><dd><a href="mailto:amy.theotroom@gmail.com">amy.theotroom@gmail.com</a><br>www.theotroom.co.uk</dd></div>
+      <div><dt>Registration</dt><dd>HCPC registered OT093958<br>RCOT registered</dd></div>
+      <div><dt>Area</dt><dd>East and West Sussex,<br>Surrey and Kent</dd></div>
+      <div><dt>The Reading Room</dt><dd><a href="/reading-room.html">The Reading Room</a></dd></div>
+    </dl>
+    <p class="f-legal">&copy; 2026 The OT Room. The titles &ldquo;occupational therapist&rdquo; and &ldquo;OT&rdquo; are protected by law and may only be used by practitioners registered with the Health and Care Professions Council.</p>
+  </div>
+</footer>
+<script>
+(function () {
+  var sub    = document.querySelector('.has-sub');
+  var toggle = sub && sub.querySelector('.subtoggle');
+  var burger = document.querySelector('.burger');
+  var panel  = document.getElementById('mobilenav');
+
+  // The submenu opens on hover and on keyboard focus via CSS.
+  // JS only keeps aria-expanded truthful and lets Escape close it.
+  if (sub && toggle) {
+    var sync = function (open) { toggle.setAttribute('aria-expanded', open ? 'true' : 'false'); };
+    sub.addEventListener('mouseenter', function () { sync(true); });
+    sub.addEventListener('mouseleave', function () { if (!sub.contains(document.activeElement)) sync(false); });
+    sub.addEventListener('focusin',  function () { sync(true); });
+    sub.addEventListener('focusout', function () {
+      setTimeout(function () { if (!sub.contains(document.activeElement)) sync(false); }, 0);
+    });
+    if (toggle.tagName === 'BUTTON') { toggle.addEventListener('click', function (e) { e.preventDefault(); }); }
+  }
+
+  function closeMobile() {
+    if (!panel) return;
+    panel.hidden = true;
+    burger.setAttribute('aria-expanded', 'false');
+  }
+
+  if (burger) {
+    burger.addEventListener('click', function () {
+      var open = panel.hidden;
+      panel.hidden = !open;
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    panel.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', closeMobile);
+    });
+  }
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    closeMobile();
+    if (sub && sub.contains(document.activeElement) && toggle.blur) toggle.blur();
+  });
+})();
+</script>
 </body>
 </html>

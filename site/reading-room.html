@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The OT Room — Paediatric Occupational Therapy</title>
-<meta name="description" content="Independent paediatric occupational therapy. Assessment, EHCP reports and school-based support for children. HCPC registered.">
+<title>The Reading Room — The OT Room</title>
+<meta name="description" content="Research, equipment and notes from practice, from Amy at The OT Room. Written for families and school staff.">
 
-<link rel="canonical" href="https://www.theotroom.co.uk/">
+<link rel="canonical" href="https://www.theotroom.co.uk/reading-room.html">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="assets/favicon-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
@@ -14,10 +14,10 @@
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="The OT Room">
-<meta property="og:title" content="The OT Room — Paediatric Occupational Therapy">
-<meta property="og:description" content="Independent paediatric occupational therapy across East and West Sussex, Surrey and Kent. Assessment, EHCP reports and school-based support. HCPC registered.">
-<meta property="og:url" content="https://www.theotroom.co.uk/">
-<meta property="og:image" content="https://www.theotroom.co.uk/assets/hero-play-blocks.jpg">
+<meta property="og:title" content="The Reading Room — The OT Room">
+<meta property="og:description" content="Research, equipment and notes from practice, written for families and school staff.">
+<meta property="og:url" content="https://www.theotroom.co.uk/reading-room.html">
+<meta property="og:image" content="https://www.theotroom.co.uk/assets/reading-room.jpg">
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -377,332 +377,145 @@ footer a{ color:var(--paper) }
 .f-grid dd{ font-size:14px; color:rgba(239,242,239,.85); line-height:1.55 }
 .f-legal{ margin-top:34px; font-size:12px; color:rgba(239,242,239,.55) }
 </style>
+
+<style>
+/* ---------- reading room page ---------- */
+.rr-hero{ padding:clamp(40px,5.5vw,74px) 0 clamp(30px,4vw,48px) }
+.rr-title{
+  position:relative; z-index:0;
+  font-family:'Fraunces',Georgia,serif; font-weight:600;
+  font-variation-settings:'SOFT' 0,'WONK' 0;
+  font-size:clamp(32px,5.4vw,60px); line-height:1.15;
+  padding:0 0 .30em;
+  background-image:repeating-linear-gradient(90deg,
+    rgba(184,122,28,.55) 0 7px, transparent 7px 14px);
+  background-size:100% 1px;
+  background-position:0 .475em;
+  background-repeat:no-repeat;
+}
+.rr-title::before,
+.rr-title::after{ content:''; position:absolute; left:0; right:0; z-index:-1; display:block }
+.rr-title::before{ top:.185em; border-top:1px solid var(--rule) }
+.rr-title::after { top:.935em; border-top:2px solid var(--petrol) }
+@media (max-width:700px){
+  .rr-title{ background-image:none; padding-bottom:.42em }
+  .rr-title::before{ display:none }
+}
+.rr-standfirst{
+  margin-top:20px; max-width:62ch; color:var(--petrol-70);
+  font-size:clamp(15.5px,1.2vw,17px); line-height:1.62;
+}
+.rr-figure{ position:relative; margin:clamp(30px,4vw,52px) 0 0 }
+.rr-figure img{
+  width:100%; height:auto; aspect-ratio:3/2; object-fit:cover;
+  border-radius:3px; display:block;
+}
+.rr-figure::after{
+  content:''; position:absolute; left:0; right:0; bottom:-14px;
+  border-bottom:2px solid var(--petrol);
+}
+.strands{ display:grid; gap:clamp(24px,3vw,44px); grid-template-columns:repeat(3,1fr) }
+@media (max-width:860px){ .strands{ grid-template-columns:1fr } }
+.strand{ border-top:2px solid var(--petrol); padding-top:18px; scroll-margin-top:96px }
+.strand h2{
+  font-family:'Fraunces',Georgia,serif; font-weight:600;
+  font-variation-settings:'SOFT' 0,'WONK' 0;
+  font-size:clamp(18px,1.7vw,22px); line-height:1.2; margin-bottom:10px;
+}
+.strand p{ font-size:14.5px; color:var(--petrol-70); line-height:1.6 }
+.soon{
+  display:inline-block; margin-top:14px; font-size:10.5px; font-weight:700;
+  letter-spacing:.16em; text-transform:uppercase; color:var(--ochre);
+}
+.rr-back{ margin-top:clamp(36px,4.4vw,60px); padding-top:22px; border-top:1px solid var(--rule) }
+.rr-back a{ font-weight:700; text-decoration:none;
+            border-bottom:2px solid var(--ochre); padding-bottom:2px }
+.rr-back a:hover{ color:var(--ochre) }
+</style>
+
 </head>
 <body>
 
 <header class="masthead">
   <div class="wrap">
-    <a href="#top" class="wordmark mh-name" style="text-decoration:none">Amy <b class="at">@</b>The OT Room</a>
+    <a href="index.html#top" class="wordmark mh-name" style="text-decoration:none">Amy <b class="at">@</b>The OT Room</a>
     <nav aria-label="Main">
       <ul>
-        <li><a href="#help">How I can help</a></li>
-        <li><a href="#how">How it works</a></li>
-        <li><a href="#support">Assessment &amp; support</a></li>
+        <li><a href="index.html#help">How I can help</a></li>
+        <li><a href="index.html#how">How it works</a></li>
+        <li><a href="index.html#support">Assessment &amp; support</a></li>
         <li class="has-sub">
-          <a class="subtoggle" href="reading-room.html" aria-expanded="false" aria-controls="submenu-reading">
+          <button type="button" class="subtoggle" aria-expanded="false" aria-controls="submenu-reading">
             The Reading Room <span class="chev" aria-hidden="true"></span>
-          </a>
+          </button>
           <ul id="submenu-reading" class="submenu">
-            <li><a href="reading-room.html#research">Research &amp; reading</a></li>
-            <li><a href="reading-room.html#equipment">Equipment &amp; resources</a></li>
-            <li><a href="reading-room.html#notes">Notes from practice</a></li>
+            <li><a href="#research">Research &amp; reading</a></li>
+            <li><a href="#equipment">Equipment &amp; resources</a></li>
+            <li><a href="#notes">Notes from practice</a></li>
           </ul>
         </li>
-        <li><a href="#about">About</a></li>
+        <li><a href="index.html#about">About</a></li>
       </ul>
     </nav>
-    <a class="mh-cta" href="#contact">Get in touch</a>
+    <a class="mh-cta" href="index.html#contact">Get in touch</a>
     <button type="button" class="burger" aria-expanded="false" aria-controls="mobilenav" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
   </div>
   <div class="mobilenav" id="mobilenav" hidden>
     <div class="wrap">
-      <a href="#help">How I can help</a>
-      <a href="#how">How it works</a>
-      <a href="#support">Assessment &amp; support</a>
-      <a href="reading-room.html" class="mn-group-link">The Reading Room</a>
-      <a href="reading-room.html#research" class="mn-sub">Research &amp; reading</a>
-      <a href="reading-room.html#equipment" class="mn-sub">Equipment &amp; resources</a>
-      <a href="reading-room.html#notes" class="mn-sub">Notes from practice</a>
-      <a href="#about">About</a>
-      <a href="#contact">Get in touch</a>
+      <a href="index.html#help">How I can help</a>
+      <a href="index.html#how">How it works</a>
+      <a href="index.html#support">Assessment &amp; support</a>
+      <p class="mn-group">The Reading Room</p>
+      <a href="#research" class="mn-sub">Research &amp; reading</a>
+      <a href="#equipment" class="mn-sub">Equipment &amp; resources</a>
+      <a href="#notes" class="mn-sub">Notes from practice</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#contact">Get in touch</a>
     </div>
   </div>
 </header>
 
 <main id="top">
 
-  <!-- ============ HERO ============ -->
-  <section class="hero">
+  <section class="rr-hero">
     <div class="wrap">
-      <p class="eyebrow">Independent paediatric occupational therapy</p>
+      <h1 class="rr-title">The Reading Room</h1>
+      <p class="rr-standfirst">Research I have found useful, equipment that earns its place, and
+      short notes from practice &mdash; written for families and school staff rather than for other
+      therapists. This part of the site is being put together at the moment.</p>
 
-      <h1 class="wordmark hero-name guide">
-        <i class="asc"></i><i class="mid"></i><i class="base"></i>
-        <em>Amy <b class="at">@</b>The OT Room</em>
-      </h1>
-
-      <div class="hero-body">
-      <div class="hero-copy">
-      <p class="hero-lead">Helping children take part in the everyday things that matter to them.</p>
-      <p class="hero-sub">Occupational therapy looks at the practical business of a childhood &mdash;
-      getting dressed, writing, eating, playing, managing a school day. Where something is getting in
-      the way, I assess what is going on underneath it and work out what will help, with the child,
-      the family and the school together.</p>
-      </div>
-
-      <figure class="hero-photo">
-        <img src="assets/hero-play-blocks.jpg" alt="Wooden alphabet blocks spelling the word play"
-             width="1600" height="1280" loading="eager">
+      <figure class="rr-figure">
+        <img src="assets/reading-room.jpg" alt="Reading and making notes at home"
+             width="1600" height="1061" loading="eager">
       </figure>
-      </div>
-    </div>
-  </section>
-  <!-- ============ WHAT I HELP WITH ============ -->
-  <section id="help" class="band">
-    <div class="wrap">
-      <div class="sec-head">
-        <p class="sec-kicker">Parents &amp; carers</p>
-        <h2 class="sec-title">How I can help</h2>
-        <p class="sec-intro">Families come to me for all sorts of reasons. These are the areas I most
-        often assess and support. If you are not sure whether any of them fits your child, do get in
-        touch and we can have a chat about it.</p>
-      </div>
-
-      <div class="areas">
-        <article class="area">
-          <h3>Sensory processing and regulation</h3>
-          <p>How a child takes in and makes sense of sound, touch, movement and everything else
-          going on around them. This shapes how settled or overwhelmed they feel in busy places
-          such as the hall, the playground or the supermarket, and how easily they recover
-          afterwards.</p>
-        </article>
-
-        <article class="area">
-          <h3>Motor skills and independence</h3>
-          <p>Dressing, fastenings, cutlery, scissors, riding a bike. Coordination, planning and
-          strength all contribute, and knowing which one is holding a skill back changes what
-          kind of practice will actually move it forward.</p>
-        </article>
-
-        <article class="area">
-          <h3>Handwriting, typing and visual processing</h3>
-          <p>Letter formation, pencil grip, speed and stamina, copying from the board, and how
-          the eyes and hands work together.</p>
-        </article>
-
-        <article class="area">
-          <h3>Daily living and interoception</h3>
-          <p>Toileting, eating, sleep routines and getting out of the house in the morning.
-          These often rest on a child&rsquo;s awareness of signals from their own body.</p>
-        </article>
-
-        <article class="area">
-          <h3>Taking part at school</h3>
-          <p>Sitting for carpet time, moving between lessons, managing equipment, joining in at
-          break. Small adjustments to the environment and routine can help a child feel regulated
-          when in school.</p>
-        </article>
-
-        <article class="area">
-          <h3>Play, leisure and friendships</h3>
-          <p>Occupational therapy is concerned with what a child wants to do as much as what they
-          have to do. Being able to join a game, use the park equipment or keep up with a club
-          matters.</p>
-        </article>
-      </div>
     </div>
   </section>
 
-  <!-- ============ HOW IT WORKS ============ -->
-  <section id="how">
+  <section class="band">
     <div class="wrap">
-      <div class="sec-head">
-        <p class="sec-kicker">What happens</p>
-        <h2 class="sec-title">How it works</h2>
-        <p class="sec-intro">Three steps from the first conversation to a plan.</p>
-      </div>
-
-      <div class="steps">
-        <div class="step">
-          <h3>We talk first</h3>
-          <p>A free half-hour call to hear what is happening and what you are hoping for. If
-          occupational therapy is not the right thing, I will say so, and suggest what might be.</p>
-        </div>
-        <div class="step">
-          <h3>Assessment</h3>
-          <p>Usually in school, where the difficulties arise. Standardised assessment, observation in
-          class and at break, and conversations with the staff and the family who know the child best.</p>
-        </div>
-        <div class="step">
-          <h3>Findings and a plan</h3>
-          <p>A written report setting out what I found and what I recommend, with strategies the
-          adults around the child can realistically use. We go through it together before it is finalised.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ SCHOOLS ============ -->
-  <section id="support" class="band">
-    <div class="wrap">
-      <div class="sec-head">
-        <p class="sec-kicker">Assessment &amp; support</p>
-        <h2 class="sec-title">What I offer</h2>
-        <p class="sec-intro">Every assessment includes a written report with findings and practical
-        recommendations.</p>
-      </div>
-
-      <div class="offer-grid">
-
-        <article class="offer">
-          <h3>Initial telephone consultation</h3>
-          <p>Up to thirty minutes, free of charge and with no obligation. A chance to talk through
-          what is happening and work out whether an assessment is the right next step.</p>
+      <div class="strands">
+        <article class="strand" id="research">
+          <h2>Research &amp; reading</h2>
+          <p>Papers and guidance worth a parent&rsquo;s or a SENCo&rsquo;s time, with a note on what they
+          actually say and what they do not.</p>
+          <span class="soon">Coming soon</span>
         </article>
-
-        <article class="offer">
-          <h3>School-based assessment</h3>
-          <p>A full day in your child&rsquo;s setting: standardised assessment, observation in class and
-          at playtime, a conversation with staff, and a summary report.</p>
+        <article class="strand" id="equipment">
+          <h2>Equipment &amp; resources</h2>
+          <p>What is worth buying, what is not, and free printables you are welcome to use at home
+          or in the classroom.</p>
+          <span class="soon">Coming soon</span>
         </article>
-
-        <article class="offer">
-          <h3>Sensory profile assessment</h3>
-          <p>Standardised sensory questionnaires completed for home and school, with interpretation,
-          a written profile and strategies you can use in both places.</p>
+        <article class="strand" id="notes">
+          <h2>Notes from practice</h2>
+          <p>Short pieces on how I work and why, and things you can try before an assessment.</p>
+          <span class="soon">Coming soon</span>
         </article>
-
-        <article class="offer">
-          <h3>Full EHCP assessment and report</h3>
-          <p>School visit with standardised assessment, classroom and unstructured-time observation,
-          discussion with the SENCo and teaching staff, and a report setting out needs, recommended
-          outcomes and quantified provision.</p>
-        </article>
-
-        <article class="offer">
-          <h3>Other specific assessments</h3>
-          <p>Fine and gross motor skills, sensory integration, visual perception and visual
-          processing, and handwriting or typing. Quoted on request.</p>
-        </article>
-
-        <article class="offer">
-          <h3>Progress and annual review updates</h3>
-          <p>A written update for an annual review, and attendance at reviews, EHCP meetings,
-          multi-disciplinary meetings and school meetings, in person or online.</p>
-        </article>
-
-        <article class="offer">
-          <h3>Parent and carer consultation</h3>
-          <p>Up to an hour without your child present. Useful for planning strategies, thinking
-          something through, or between blocks of support.</p>
-        </article>
-
-        <article class="offer">
-          <h3>Staff training and INSET</h3>
-          <p>Half-day sessions tailored to your setting &mdash; regulation, handwriting, sensory
-          strategies, motor skills and more.</p>
-        </article>
-
       </div>
 
-      <div class="terms-band">
-        <h3>Fees, booking and payment</h3>
-        <p class="fees-line"><b>Fees are available on request</b> &mdash; just ask and I will send you
-        the current list.</p>
-        <ul>
-          <li>A <b>50% deposit</b> is payable two weeks before the appointment. The booking is
-          confirmed once it has been received.</li>
-          <li>The <b>balance</b> is due within 7 days of the appointment for families, or within
-          30 days for schools and local authorities.</li>
-          <li><b>Cancellation</b> &mdash; with more than 48 hours&rsquo; notice the deposit is refunded in
-          full or moved to a new date. With less than 48 hours&rsquo; notice it is retained, and missed
-          appointments are charged at the full fee.</li>
-          <li><b>Travel</b> is included within 10 miles. Beyond that it is charged at 45p per mile
-          on the round trip, and always quoted before booking.</li>
-        </ul>
-      </div>
-
-      <div class="note-band">
-        <p><b>Bespoke packages.</b> Not every child fits a standard package. Quotes are available for
-        bespoke work &mdash; combined assessments, blocks of support, work across two settings, or an
-        ongoing arrangement with a school. Please get in touch and we can put something together.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ ABOUT ============ -->
-  <section id="about" class="band-mist">
-    <div class="wrap">
-      <div class="sec-head">
-        <p class="sec-kicker">About</p>
-        <h2 class="sec-title">A little about me</h2>
-      </div>
-
-      <div class="about-grid">
-        <div>
-          <p class="about-lead">I hold a BSc (Hons) in Occupational Therapy from St George&rsquo;s,
-          University of London, and work with children and young people to support their
-          participation in education and everyday life.</p>
-
-          <p>My clinical interests include autism, sensory integration, and developing the practical
-          skills and confidence children need day to day. As a parent of three, I work in close
-          partnership with families and take the time to understand what matters most to them.</p>
-
-          <p>Assessment, consultation and intervention are offered at home, at school and in the
-          community, across East and West Sussex, Surrey and Kent, depending on location. I am
-          registered with the Health and
-          Care Professions Council (OT093958) and with the Royal College of Occupational Therapists,
-          and hold an enhanced DBS.</p>
-
-          <p>Fees are available on request &mdash; <a href="#contact">get in touch</a> and I will send
-          the current fee list.</p>
-        </div>
-
-        <figure class="about-photo">
-          <img src="assets/amy-portrait.jpg" alt="Amy, paediatric occupational therapist and founder of The OT Room"
-               width="1000" height="1250" loading="lazy">
-        </figure>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ READING ROOM TEASER ============ -->
-  <section id="reading" class="band">
-    <div class="wrap">
-      <div class="rr-teaser">
-        <div>
-          <h2 class="sec-title">The Reading Room</h2>
-          <p class="rr-teaser-copy">Research I have found useful, equipment that earns its place, and
-          short notes from practice &mdash; written for families and school staff rather than for other
-          therapists.</p>
-          <p class="rr-teaser-link"><a href="reading-room.html">Visit The Reading Room&ensp;&rarr;</a></p>
-        </div>
-        <a class="rr-teaser-photo" href="reading-room.html" aria-label="Visit The Reading Room">
-          <img src="assets/reading-room.jpg" alt="Reading and making notes at home"
-               width="1600" height="1061" loading="lazy">
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ CONTACT ============ -->
-  <section id="contact">
-    <div class="wrap">
-      <div class="sec-head">
-        <p class="sec-kicker">Get in touch</p>
-        <h2 class="sec-title">Start with a conversation</h2>
-        <p class="sec-intro">The first call is free and there is no obligation. Tell me a little about
-        your child, or about the child your school is concerned about, and we can work out together
-        whether an assessment is the right next step.</p>
-      </div>
-
-      <div class="contact-grid">
-        <div>
-          <a class="bigmail" href="mailto:amy.theotroom@gmail.com">amy.theotroom@gmail.com</a>
-          <p style="margin-top:20px; color:var(--petrol-70); max-width:48ch">
-          Email is the quickest way to reach me. I aim to reply within two working days.</p>
-        </div>
-        <div>
-          <dl class="dl">
-            <div><dt>Where I work</dt><dd>Schools, homes and settings across East and West Sussex, Surrey and Kent, depending on location.</dd></div>
-            <div><dt>Referrals</dt><dd>Parents, schools and case managers can all get in touch directly.</dd></div>
-            <div><dt>Waiting time</dt><dd>Assessments are usually available within a few weeks.</dd></div>
-            <div><dt>Fees</dt><dd>Available on request. Ask and I will send the current fee list.</dd></div>
-          </dl>
-        </div>
-      </div>
+      <p class="rr-back"><a href="index.html">&larr;&ensp;Back to The OT Room</a></p>
     </div>
   </section>
 
@@ -720,7 +533,6 @@ footer a{ color:var(--paper) }
     <p class="f-legal">&copy; 2026 The OT Room. The titles &ldquo;occupational therapist&rdquo; and &ldquo;OT&rdquo; are protected by law and may only be used by practitioners registered with the Health and Care Professions Council.</p>
   </div>
 </footer>
-
 <script>
 (function () {
   var sub    = document.querySelector('.has-sub');
