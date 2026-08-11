@@ -3,6 +3,7 @@ name: Deploy Site (test)
 # Publishes the static site in site/ to the TEST bucket (test.theotroom.co.uk) on every push to main
 # that touches the site, then invalidates the test CloudFront distribution. Promotion to production
 # (theotroom.co.uk) is a separate, manual step — see promote-site.yml.
+# You can also run it by hand from the Actions tab (workflow_dispatch).
 on:
   push:
     branches: [main]
