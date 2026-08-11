@@ -10,25 +10,62 @@ terminal that runs inside the AWS Console in your browser, with the AWS CLI alre
 
 There are two ways to build the infrastructure. Both run in CloudShell; pick one:
 
-- **Path A — the repo's Terraform** (recommended): reuses the tested `deploy/*.tf`. One-time Terraform
-  install into CloudShell, then `terraform apply`.
-- **Path B — pure AWS CLI**: runs `deploy/cloudshell-provision.sh`, which builds the same stack with
-  `aws` commands and no Terraform at all.
+- **Path B — one script, no clone** (recommended): upload the single self-contained
+  `deploy/cloudshell-provision.sh` and run it. No git, no Terraform. Best when you can't clone the
+  private repo.
+- **Path A — the repo's Terraform**: reuses the tested `deploy/*.tf`. Needs the repo cloned (with a
+  token, since it's private) and a one-time Terraform install.
 
 The steps around them — GoDaddy, GitHub — are identical.
 
 ---
 
-## Get the repo into CloudShell (both paths)
-
-```bash
-git clone https://github.com/daniellepelley/the-ot-room.git
-cd the-ot-room
-```
+> **This repo is private**, so `git clone` in CloudShell fails without a token. You don't need to
+> clone at all for **Path B** (recommended) — it runs from a single self-contained script you upload.
+> Only **Path A** needs the repo files.
 
 ---
 
-## Path A — Terraform in CloudShell (recommended)
+## Path B — one script, no clone, no Terraform (recommended)
+
+`deploy/cloudshell-provision.sh` is self-contained (the CloudFront function code is embedded in it),
+so it needs nothing else from the repo. Get it into CloudShell one of two ways:
+
+- **Upload it:** in CloudShell, **Actions → Upload file**, and choose `cloudshell-provision.sh`.
+- **Or paste it:** run `cat > cloudshell-provision.sh` in CloudShell, paste the file's contents,
+  press Ctrl-D.
+
+It runs in two passes because DNS has to move to Route 53 before the certificate can validate:
+
+```bash
+# Pass 1 — create the hosted zone and print the nameservers:
+bash cloudshell-provision.sh zone
+```
+
+→ Now do the **[GoDaddy step](#point-godaddy-at-route-53-both-paths)** below, wait for it, then:
+
+```bash
+# Pass 2 — cert, buckets, CloudFront, policies, DNS records:
+bash cloudshell-provision.sh rest
+```
+
+The script prints the `WEBSITE_*` values for GitHub at the end. (Pass 2 waits for the certificate to
+validate; if it times out, the GoDaddy switch hasn't propagated yet — wait and re-run
+`bash cloudshell-provision.sh rest`.)
+
+Skip Path A and continue at **[GitHub setup](#wire-up-github-both-paths)**.
+
+---
+
+## Path A — Terraform in CloudShell
+
+Terraform needs the repo's `deploy/` files. Clone with a **fine-grained personal access token** (GitHub
+→ Settings → Developer settings → Personal access tokens, read access to this repo):
+
+```bash
+git clone https://YOUR_TOKEN@github.com/daniellepelley/the-ot-room.git
+cd the-ot-room
+```
 
 Install Terraform once (CloudShell is Amazon Linux 2023; this drops the binary in your home dir, which
 persists):
@@ -58,33 +95,6 @@ terraform output nameservers
 terraform apply          # builds everything else; completes once DNS has moved
 terraform output         # prints the bucket + distribution values for GitHub
 ```
-
-Skip Path B and continue at **[GitHub setup](#wire-up-github-both-paths)**.
-
----
-
-## Path B — pure AWS CLI (no Terraform)
-
-The script `deploy/cloudshell-provision.sh` builds the same stack. It runs in two passes because DNS
-has to move to Route 53 before the certificate can validate.
-
-```bash
-cd ~/the-ot-room
-
-# Pass 1 — create the hosted zone and print the nameservers:
-./deploy/cloudshell-provision.sh zone
-```
-
-→ Now do the **[GoDaddy step](#point-godaddy-at-route-53-both-paths)** below, wait for it, then:
-
-```bash
-# Pass 2 — cert, buckets, CloudFront, policies, DNS records:
-./deploy/cloudshell-provision.sh rest
-```
-
-The script prints the `WEBSITE_*` values for GitHub at the end. (Pass 2 waits for the certificate to
-validate; if it times out, the GoDaddy switch hasn't propagated yet — wait and re-run
-`./deploy/cloudshell-provision.sh rest`.)
 
 ---
 
