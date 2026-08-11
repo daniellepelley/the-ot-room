@@ -1,0 +1,37 @@
+name: Deploy Site (test)
+
+# Publishes the static site in site/ to the TEST bucket (test.theotroom.co.uk) on every push to main
+# that touches the site, then invalidates the test CloudFront distribution. Promotion to production
+# (theotroom.co.uk) is a separate, manual step — see promote-site.yml.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'site/**'
+      - '.github/workflows/deploy-site.yml'
+  workflow_dispatch:
+
+jobs:
+  deploy-test:
+    environment: test
+    runs-on: ubuntu-latest
+    env:
+      AWS_ACCESS_KEY_ID: ${{ vars.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_DEFAULT_REGION: ${{ vars.WEBSITE_AWS_REGION }}
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Sync site/ to the test bucket
+      run: aws s3 sync site "s3://${{ vars.WEBSITE_TEST_BUCKET }}" --delete
+
+    - name: Invalidate the test CloudFront distribution
+      run: |
+        aws cloudfront create-invalidation \
+          --distribution-id "${{ vars.WEBSITE_TEST_DISTRIBUTION_ID }}" \
+          --paths "/*"
+
+    - name: Summary
+      run: echo "Deployed to https://test.theotroom.co.uk — promote with the 'Promote Site (test -> live)' workflow." >> "$GITHUB_STEP_SUMMARY"
