@@ -33,9 +33,16 @@ zone whose nameservers live at GoDaddy).
 
 ## First-time setup
 
-The one-time manual setup — AWS credentials, Terraform, pointing GoDaddy at Route 53, and the GitHub
-variables/environments — is a step-by-step walkthrough in **[`docs/manual-setup.md`](docs/manual-setup.md)**.
-The infrastructure reference (what Terraform builds and why) is in [`deploy/README.md`](deploy/README.md).
+The one-time manual setup — AWS credentials, provisioning the infrastructure, pointing GoDaddy at
+Route 53, and the GitHub variables/environments — has two walkthroughs:
+
+- **[`docs/cli-setup.md`](docs/cli-setup.md)** — do it all in the browser with **AWS CloudShell**,
+  nothing to install locally (either the repo's Terraform, or the pure-CLI
+  `deploy/cloudshell-provision.sh` script). Start here if you don't have Terraform installed.
+- **[`docs/manual-setup.md`](docs/manual-setup.md)** — the same steps assuming a local Terraform +
+  AWS CLI, with fuller IAM/console detail, troubleshooting and costs.
+
+The infrastructure reference (what gets built and why) is in [`deploy/README.md`](deploy/README.md).
 
 ## Editing the site
 
