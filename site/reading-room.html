@@ -449,21 +449,25 @@ footer a{ color:var(--paper) }
 .rr-feat-link a{ font-weight:700; text-decoration:none;
                  border-bottom:2px solid var(--ochre); padding-bottom:3px }
 .rr-feat-link a:hover{ color:var(--ochre) }
-.rr-more{ margin-top:clamp(40px,5vw,64px) }
-.rr-more-head{ font-family:'Fraunces',Georgia,serif; font-weight:600;
+/* two-column layout: featured article on the left, article list on the right */
+.rr-layout{ display:grid; grid-template-columns:minmax(0,1fr) clamp(220px,26%,300px);
+            gap:clamp(28px,4vw,60px); align-items:start; margin-top:clamp(28px,4vw,48px) }
+@media (max-width:820px){ .rr-layout{ grid-template-columns:1fr; gap:clamp(30px,6vw,44px) } }
+.rr-main .rr-featured{ margin-top:0 }
+.rr-side{ border-top:2px solid var(--petrol); padding-top:18px }
+.rr-side-head{ font-family:'Fraunces',Georgia,serif; font-weight:600;
                font-variation-settings:'SOFT' 0,'WONK' 0;
                font-size:11.5px; letter-spacing:.18em; text-transform:uppercase;
-               color:var(--ochre); margin-bottom:16px }
-.rr-more-empty{ font-size:14.5px; color:var(--petrol-70) }
-.rr-list{ list-style:none }
-.rr-item{ border-top:1px solid var(--rule); padding:16px 0 }
-.rr-item .rr-cat{ margin-bottom:6px }
-.rr-item h3{ font-family:'Fraunces',Georgia,serif; font-weight:600;
-             font-variation-settings:'SOFT' 0,'WONK' 0;
-             font-size:clamp(17px,1.7vw,21px); line-height:1.2; margin-bottom:4px }
-.rr-item h3 a{ text-decoration:none; color:var(--petrol) }
-.rr-item h3 a:hover{ color:var(--ochre) }
-.rr-item-date{ font-size:12.5px; color:var(--petrol-25) }
+               color:var(--ochre); margin-bottom:4px }
+.rr-side-list{ list-style:none }
+.rr-side-list li{ border-top:1px solid var(--rule); padding:14px 0 }
+.rr-side-list li:first-child{ border-top:0 }
+.rr-side-list a{ font-family:'Fraunces',Georgia,serif; font-weight:600;
+                 font-variation-settings:'SOFT' 0,'WONK' 0;
+                 font-size:15.5px; line-height:1.25; text-decoration:none;
+                 color:var(--petrol); display:block }
+.rr-side-list a:hover{ color:var(--ochre) }
+.rr-side-meta{ display:block; font-size:12px; color:var(--petrol-25); margin-top:5px }
 </style>
 
 </head>
@@ -510,30 +514,39 @@ footer a{ color:var(--paper) }
 
   <section class="band">
     <div class="wrap">
+      <div class="rr-layout">
 
-      <!-- FEATURED (latest) article -->
-      <article class="rr-featured">
-        <p class="rr-cat">Notes from practice</p>
-        <h2 class="rr-feat-title"><a href="interoception.html">Starting on the Inside: Why Interoception Matters</a></h2>
-        <p class="rr-feat-date">August 2026</p>
-        <p class="rr-feat-excerpt">Occupational therapists work with eight senses, not five.
-        Interoception &mdash; the sense of what&rsquo;s happening inside our own bodies &mdash; is well
-        established in theory but easily missed in practice. Why it belongs at the start of the process,
-        not the middle.</p>
-        <p class="rr-feat-link"><a href="interoception.html">Read the article&ensp;&rarr;</a></p>
-      </article>
+        <!-- LEFT: featured (latest) article -->
+        <div class="rr-main">
+          <article class="rr-featured">
+            <p class="rr-cat">Notes from practice</p>
+            <h2 class="rr-feat-title"><a href="interoception.html">Starting on the Inside: Why Interoception Matters</a></h2>
+            <p class="rr-feat-date">August 2026</p>
+            <p class="rr-feat-excerpt">Occupational therapists work with eight senses, not five.
+            Interoception &mdash; the sense of what&rsquo;s happening inside our own bodies &mdash; is well
+            established in theory but easily missed in practice. Why it belongs at the start of the process,
+            not the middle.</p>
+            <p class="rr-feat-link"><a href="interoception.html">Read the article&ensp;&rarr;</a></p>
+          </article>
+        </div>
 
-      <!-- MORE ARTICLES: newest first. When a new piece is added it becomes the feature above and the
-           previous one moves into the list below. Template for each listed item:
-        <li class="rr-item">
-          <p class="rr-cat">Category</p>
-          <h3><a href="slug.html">Article title</a></h3>
-          <p class="rr-item-date">Month Year</p>
-        </li>
-      -->
-      <div class="rr-more">
-        <h2 class="rr-more-head">More from the Reading Room</h2>
-        <p class="rr-more-empty">More pieces are on the way.</p>
+        <!-- RIGHT: list of every article, newest first.
+             To add a new piece, put a new <li> at the TOP of this list:
+          <li>
+            <a href="slug.html">Article title</a>
+            <span class="rr-side-meta">Category &middot; Mon YYYY</span>
+          </li>
+        -->
+        <aside class="rr-side">
+          <h2 class="rr-side-head">All articles</h2>
+          <ul class="rr-side-list">
+            <li>
+              <a href="interoception.html">Starting on the Inside: Why Interoception Matters</a>
+              <span class="rr-side-meta">Notes from practice &middot; Aug 2026</span>
+            </li>
+          </ul>
+        </aside>
+
       </div>
 
       <p class="rr-back"><a href="index.html">&larr;&ensp;Back to The OT Room</a></p>
