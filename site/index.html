@@ -227,6 +227,7 @@ section{ padding:clamp(48px,6.5vw,88px) 0; scroll-margin-top:70px }
 }
 
 .sec-intro{ margin-top:16px; color:var(--petrol-70); max-width:60ch }
+#help .sec-intro{ max-width:78ch }
 
 /* ---------- areas of practice ---------- */
 .areas{ display:grid; gap:clamp(20px,2.6vw,32px) clamp(24px,3.4vw,52px);
@@ -297,9 +298,10 @@ section{ padding:clamp(48px,6.5vw,88px) 0; scroll-margin-top:70px }
 .note-band b{ color:var(--ochre) }
 
 /* ---------- about ---------- */
-.about-grid{ display:block }
+.about-grid{ display:grid; grid-template-columns:1fr auto; gap:clamp(24px,3.5vw,52px);
+             align-items:end }
 @media (max-width:860px){ .about-grid{ grid-template-columns:1fr } }
-.about-grid p{ max-width:70ch; margin-bottom:16px; color:var(--petrol-70) }
+.about-grid p{ margin-bottom:16px; color:var(--petrol-70) }
 .about-grid p:last-child{ margin-bottom:0 }
 .about-grid a{ color:var(--petrol); text-decoration:none;
                border-bottom:1.5px solid var(--ochre); font-weight:500 }
@@ -308,9 +310,10 @@ section{ padding:clamp(48px,6.5vw,88px) 0; scroll-margin-top:70px }
   font-family:'Fraunces',Georgia,serif; font-weight:400;
   font-variation-settings:'SOFT' 0,'WONK' 0;
   font-size:clamp(18px,2vw,23px); line-height:1.4;
-  color:var(--petrol) !important; max-width:34ch !important; margin-bottom:20px !important;
+  color:var(--petrol) !important; max-width:52ch !important; margin-bottom:20px !important;
 }
-.about-photo{ position:relative; width:clamp(120px,16vw,168px); margin:28px 0 0 auto }
+.about-photo{ position:relative; width:clamp(120px,15vw,168px);
+              justify-self:end; align-self:end; margin:0 }
 .about-photo img{
   width:100%; height:auto; aspect-ratio:1/1; object-fit:cover;
   border-radius:50%; display:block;
