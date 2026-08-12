@@ -220,11 +220,7 @@ section{ padding:clamp(48px,6.5vw,88px) 0; scroll-margin-top:70px }
 .sec-title::before{ top:.185em; border-top:1px solid var(--rule) }   /* ascender line */
 .sec-title::after { top:.935em; border-top:2px solid var(--petrol) } /* baseline */
 
-/* titles that wrap can't sit on a single ruled line — fall back to the baseline only */
-@media (max-width:700px){
-  .sec-title{ background-image:none; padding-bottom:.42em }
-  .sec-title::before{ display:none }
-}
+/* the handwriting-guide rules now show on mobile too */
 
 .sec-intro{ margin-top:16px; color:var(--petrol-70); max-width:60ch }
 #help .sec-intro{ max-width:78ch }
