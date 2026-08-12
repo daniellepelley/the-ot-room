@@ -297,10 +297,9 @@ section{ padding:clamp(48px,6.5vw,88px) 0; scroll-margin-top:70px }
 .note-band b{ color:var(--ochre) }
 
 /* ---------- about ---------- */
-.about-grid{ display:grid; gap:clamp(26px,4vw,60px); grid-template-columns:1.15fr .85fr;
-             align-items:start }
+.about-grid{ display:block }
 @media (max-width:860px){ .about-grid{ grid-template-columns:1fr } }
-.about-grid p{ max-width:56ch; margin-bottom:16px; color:var(--petrol-70) }
+.about-grid p{ max-width:70ch; margin-bottom:16px; color:var(--petrol-70) }
 .about-grid p:last-child{ margin-bottom:0 }
 .about-grid a{ color:var(--petrol); text-decoration:none;
                border-bottom:1.5px solid var(--ochre); font-weight:500 }
@@ -311,15 +310,12 @@ section{ padding:clamp(48px,6.5vw,88px) 0; scroll-margin-top:70px }
   font-size:clamp(18px,2vw,23px); line-height:1.4;
   color:var(--petrol) !important; max-width:34ch !important; margin-bottom:20px !important;
 }
-.about-photo{ position:relative; margin:0 }
+.about-photo{ position:relative; width:clamp(120px,16vw,168px); margin:28px 0 0 auto }
 .about-photo img{
-  width:100%; height:auto; aspect-ratio:4/5; object-fit:cover;
-  border-radius:3px; display:block;
+  width:100%; height:auto; aspect-ratio:1/1; object-fit:cover;
+  border-radius:50%; display:block;
 }
-.about-photo::after{
-  content:''; position:absolute; left:0; right:0; bottom:-14px;
-  border-bottom:2px solid var(--petrol);
-}
+.about-photo::after{ display:none }
 @media (max-width:860px){
   .about-photo{ max-width:320px }
   .about-photo::after{ display:none }
@@ -388,8 +384,8 @@ footer a{ color:var(--paper) }
         <li><a href="#help">How I can help</a></li>
         <li><a href="#how">How it works</a></li>
         <li><a href="#support">Assessment &amp; support</a></li>
-        <li><a href="reading-room.html">The Reading Room</a></li>
         <li><a href="#about">About</a></li>
+        <li><a href="reading-room.html">The Reading Room</a></li>
       </ul>
     </nav>
     <a class="mh-cta" href="#contact">Get in touch</a>
@@ -402,8 +398,8 @@ footer a{ color:var(--paper) }
       <a href="#help">How I can help</a>
       <a href="#how">How it works</a>
       <a href="#support">Assessment &amp; support</a>
-      <a href="reading-room.html">The Reading Room</a>
       <a href="#about">About</a>
+      <a href="reading-room.html">The Reading Room</a>
       <a href="#contact">Get in touch</a>
     </div>
   </div>
