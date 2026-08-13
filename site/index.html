@@ -36,6 +36,29 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
+<script>
+/* Reveal the title guide-rules only when the Fraunces web font has genuinely
+   loaded. If it is blocked (as some in-app / QR-scanner browsers do), the rules
+   stay hidden so the titles never appear with misaligned lines. */
+(function(){
+  var d=document, r=d.documentElement;
+  function ready(){ r.classList.add('fonts-ready'); }
+  function loaded(){
+    var ok=false;
+    try{ d.fonts.forEach(function(f){
+      if(f.family && f.family.replace(/['"]/g,'')==='Fraunces' && f.status==='loaded') ok=true;
+    }); }catch(e){}
+    return ok;
+  }
+  try{
+    if(d.fonts && d.fonts.load){
+      d.fonts.load('600 1em "Fraunces"')
+        .then(function(){ if(loaded()) ready(); })
+        .catch(function(){ if(loaded()) ready(); });
+    } else { ready(); }
+  }catch(e){ ready(); }
+})();
+</script>
 
 <style>
 :root{
@@ -78,6 +101,17 @@ a{ color:inherit }
 .guide .mid { top:40%;   border-top:1px dashed var(--ochre); opacity:.55 }
 .guide .base{ top:86%;   border-top:2px solid var(--petrol) }
 .guide em{ position:relative; font-style:normal }
+
+/* Show the handwriting-guide rules only once the display font (Fraunces) has
+   actually loaded. Some in-app browsers (e.g. a page opened from a QR-code
+   scanner) block web fonts; without this the ruled lines sit off the letters. */
+html:not(.fonts-ready) .guide i{ display:none }
+html:not(.fonts-ready) .sec-title::before,
+html:not(.fonts-ready) .sec-title::after,
+html:not(.fonts-ready) .rr-title::before,
+html:not(.fonts-ready) .rr-title::after{ display:none }
+html:not(.fonts-ready) .sec-title,
+html:not(.fonts-ready) .rr-title{ background-image:none }
 
 .wordmark{
   font-family:'Fraunces',Georgia,serif; font-weight:600;
