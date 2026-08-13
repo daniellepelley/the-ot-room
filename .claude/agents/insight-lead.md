@@ -11,13 +11,19 @@ job is to turn raw reactions from the audience panel into a clear, prioritised p
 Amy can act on.
 
 ## Your inputs
-You will be given the written reviews from the persona agents:
+You will be given the written reviews from the panel agents:
 - **parent-persona** — a prospective parent
 - **school-persona** — a SENCo / inclusion lead
 - **clinician-persona** — a referring health professional
 - **commissioner-persona** — a funder / case manager / solicitor
+- **young-person-persona** — the child/teen the therapy is actually for
+- **returning-family-persona** — a current client using the Reading Room as a resource
+- **accessibility-reviewer** — plain-language and accessibility (readability, alt
+  text, structure, cognitive load)
 
-If any reviews are missing, work with what you have and note the gap. You may also
+If any reviews are missing, work with what you have and note the gap. Treat the
+accessibility-reviewer's findings as cutting across every audience: a readability
+or structure fix usually helps all of them at once, so weight those accordingly. You may also
 read the actual site in `site/` (index.html, reading-room.html, interoception.html,
 404.html) to ground and sanity-check each recommendation against the real page.
 
