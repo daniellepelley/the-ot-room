@@ -481,6 +481,27 @@ section{ padding:clamp(48px,6.5vw,88px) 0; scroll-margin-top:70px }
   padding-bottom:4px; word-break:break-word;
 }
 .bigmail:hover{ color:var(--ochre) }
+
+/* ---------- contact form ---------- */
+.contact-form{ display:flex; flex-direction:column; gap:14px; max-width:52ch }
+.contact-form label{ display:flex; flex-direction:column; gap:6px;
+  font-size:13.5px; font-weight:700; color:var(--petrol) }
+.contact-form input, .contact-form textarea{
+  font:inherit; font-weight:400; color:var(--petrol); background:var(--card);
+  border:1px solid var(--rule); border-radius:4px; padding:10px 12px; width:100% }
+.contact-form input:focus, .contact-form textarea:focus{
+  outline:2px solid var(--ochre); outline-offset:1px; border-color:var(--ochre) }
+.contact-form textarea{ resize:vertical; min-height:120px }
+.form-honey{ position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden }
+.form-btn{ align-self:flex-start; font:inherit; font-weight:700; cursor:pointer;
+  background:var(--petrol); color:var(--paper); border:1.5px solid var(--petrol);
+  border-radius:999px; padding:10px 24px; transition:opacity .2s }
+.form-btn:hover{ opacity:.9 }
+.form-btn:disabled{ opacity:.5; cursor:default }
+.form-status{ font-size:14px; min-height:1.2em; margin:0 }
+.form-status.ok{ color:var(--petrol); font-weight:700 }
+.form-status.err{ color:#9a3b2f }
+.form-alt{ margin-top:16px; color:var(--petrol-70); font-size:14px }
 .dl{ display:flex; flex-direction:column; gap:16px; margin-top:4px }
 .dl div{ border-top:1px solid var(--rule); padding-top:12px }
 .dl dt{ font-size:11px; font-weight:700; letter-spacing:.16em;
@@ -780,9 +801,24 @@ footer a{ color:var(--paper) }
 
       <div class="contact-grid">
         <div>
-          <a class="bigmail" href="mailto:amy.theotroom@gmail.com">amy.theotroom@gmail.com</a>
-          <p style="margin-top:20px; color:var(--petrol-70); max-width:48ch">
-          Email is the quickest way to reach me. I aim to reply within two working days.</p>
+          <form class="contact-form" action="https://formsubmit.co/ajax/amy.theotroom@gmail.com" method="POST" novalidate>
+            <input type="hidden" name="_subject" value="New enquiry from The OT Room website">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
+            <input class="form-honey" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <label>Your name
+              <input type="text" name="name" required autocomplete="name">
+            </label>
+            <label>Your email
+              <input type="email" name="email" required autocomplete="email">
+            </label>
+            <label>Your message
+              <textarea name="message" rows="5" required placeholder="Tell me a little about your child, or about the child your school is concerned about."></textarea>
+            </label>
+            <button class="form-btn" type="submit">Send message</button>
+            <p class="form-status" role="status" aria-live="polite"></p>
+          </form>
+          <p class="form-alt">Prefer to email directly? <a href="mailto:amy.theotroom@gmail.com">amy.theotroom@gmail.com</a></p>
         </div>
         <div>
           <dl class="dl">
@@ -868,6 +904,42 @@ footer a{ color:var(--paper) }
     if (e.key !== 'Escape') return;
     closeMobile();
     if (sub && sub.contains(document.activeElement) && toggle.blur) toggle.blur();
+  });
+})();
+</script>
+<script>
+/* Contact form: submit in the background and show an inline confirmation,
+   so the visitor stays on the page. Falls back to a mailto suggestion on error. */
+(function(){
+  var form = document.querySelector('.contact-form');
+  if (!form) return;
+  var status = form.querySelector('.form-status');
+  var btn = form.querySelector('.form-btn');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+    status.className = 'form-status';
+    status.textContent = 'Sending your message...';
+    btn.disabled = true;
+    fetch(form.action, { method:'POST', body:new FormData(form), headers:{'Accept':'application/json'} })
+      .then(function(r){ return r.json().catch(function(){ return {}; }).then(function(d){ return { ok:r.ok, d:d }; }); })
+      .then(function(res){
+        var ok = res.ok && (res.d.success === true || res.d.success === 'true');
+        if (ok) {
+          form.reset();
+          status.className = 'form-status ok';
+          status.textContent = 'Thank you. Your message has been sent and I will get back to you.';
+        } else {
+          status.className = 'form-status err';
+          status.textContent = 'Sorry, something went wrong. Please email amy.theotroom@gmail.com instead.';
+        }
+        btn.disabled = false;
+      })
+      .catch(function(){
+        status.className = 'form-status err';
+        status.textContent = 'Sorry, something went wrong. Please email amy.theotroom@gmail.com instead.';
+        btn.disabled = false;
+      });
   });
 })();
 </script>
