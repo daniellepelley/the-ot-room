@@ -4,19 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Starting on the Inside: Why Interoception Matters | The OT Room</title>
-<script>
-  // Google Analytics (GA4) — only counts real visitors on the live site,
-  // not testing on the test site or local previews.
-  if (location.hostname === 'www.theotroom.co.uk') {
-    var s = document.createElement('script'); s.async = true;
-    s.src = 'https://www.googletagmanager.com/gtag/js?id=G-KWF3GP2J4Q';
-    document.head.appendChild(s);
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-KWF3GP2J4Q');
-  }
-</script>
+<!-- Analytics now loads from the cookie-consent block near the end of <body>, only after the visitor accepts. -->
 <meta name="description" content="Why interoception, the sense of what is happening inside our own bodies, belongs at the start of occupational therapy, not the middle. A note from practice by Amy at The OT Room.">
 
 <link rel="canonical" href="https://www.theotroom.co.uk/interoception.html">
@@ -729,6 +717,58 @@ footer a{ color:var(--paper) }
     if (e.key !== 'Escape') return;
     closeMobile();
     if (sub && sub.contains(document.activeElement) && toggle.blur) toggle.blur();
+  });
+})();
+</script>
+<!-- Cookie consent: analytics load only after the visitor agrees (UK PECR/GDPR). -->
+<style>
+  #cookie-banner{ position:fixed; left:16px; right:16px; bottom:16px; z-index:200;
+    max-width:560px; margin:0 auto; background:var(--card,#fff); color:var(--petrol,#12383F);
+    border:1px solid var(--rule,#C8D5D2); border-radius:8px; padding:16px 18px;
+    box-shadow:0 12px 30px rgba(18,56,63,.18);
+    font-family:'Karla',system-ui,sans-serif; font-size:14px; line-height:1.5; }
+  #cookie-banner p{ margin:0 0 12px; }
+  #cookie-banner .cb-actions{ display:flex; gap:10px; justify-content:flex-end; flex-wrap:wrap; }
+  #cookie-banner button{ font:inherit; font-weight:700; cursor:pointer; border-radius:999px;
+    padding:8px 18px; transition:opacity .2s; }
+  #cookie-banner button:hover{ opacity:.9; }
+  #cookie-banner .cb-decline{ background:transparent; color:var(--petrol,#12383F);
+    border:1.5px solid var(--rule,#C8D5D2); }
+  #cookie-banner .cb-accept{ background:var(--petrol,#12383F); color:var(--paper,#EFF2EF);
+    border:1.5px solid var(--petrol,#12383F); }
+  @media (max-width:420px){ #cookie-banner .cb-actions{ justify-content:stretch }
+    #cookie-banner button{ flex:1 1 auto } }
+</style>
+<div id="cookie-banner" role="dialog" aria-label="Cookie choices" hidden>
+  <p>This website uses cookies to measure how it is used, so the site can be improved. Is that OK?</p>
+  <div class="cb-actions">
+    <button type="button" class="cb-decline">No thanks</button>
+    <button type="button" class="cb-accept">Accept</button>
+  </div>
+</div>
+<script>
+(function(){
+  var GA_ID='G-KWF3GP2J4Q';
+  var LIVE = location.hostname==='www.theotroom.co.uk';
+  function loadGA(){
+    if(!LIVE || window.__otrGA) return; window.__otrGA=true;
+    var s=document.createElement('script'); s.async=true;
+    s.src='https://www.googletagmanager.com/gtag/js?id='+GA_ID; document.head.appendChild(s);
+    window.dataLayer=window.dataLayer||[]; function gtag(){dataLayer.push(arguments);}
+    window.gtag=gtag; gtag('js',new Date()); gtag('config',GA_ID);
+    /* When the Meta Pixel is added later, trigger it here too, under the same consent. */
+  }
+  var choice=null; try{ choice=localStorage.getItem('otr-consent'); }catch(e){}
+  if(choice==='granted'){ loadGA(); return; }
+  if(choice==='denied'){ return; }
+  if(!LIVE){ return; }               /* no tracking on the test site or local previews */
+  var b=document.getElementById('cookie-banner'); if(!b) return;
+  b.hidden=false;
+  b.querySelector('.cb-accept').addEventListener('click',function(){
+    try{localStorage.setItem('otr-consent','granted');}catch(e){} b.hidden=true; loadGA();
+  });
+  b.querySelector('.cb-decline').addEventListener('click',function(){
+    try{localStorage.setItem('otr-consent','denied');}catch(e){} b.hidden=true;
   });
 })();
 </script>
