@@ -3,21 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Reading Room | The OT Room</title>
+<title>Fussy eating in children: when it is more than a phase | The OT Room</title>
 <!-- Analytics now loads from the cookie-consent block near the end of <body>, only after the visitor accepts. -->
-<meta name="description" content="Research, equipment and notes from practice, from Amy at The OT Room. Written for families and school staff.">
+<meta name="description" content="When mealtimes are a daily battle and the list of safe foods is short, fussy eating can be about more than preference. Gentle starting points from The OT Room.">
 
-<link rel="canonical" href="https://www.theotroom.co.uk/reading-room.html">
+<link rel="canonical" href="https://www.theotroom.co.uk/fussy-eating.html">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="assets/favicon-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <meta name="theme-color" content="#12383F">
 
-<meta property="og:type" content="website">
+<meta property="og:type" content="article">
 <meta property="og:site_name" content="The OT Room">
-<meta property="og:title" content="The Reading Room | The OT Room">
-<meta property="og:description" content="Research, equipment and notes from practice, written for families and school staff.">
-<meta property="og:url" content="https://www.theotroom.co.uk/reading-room.html">
+<meta property="og:title" content="Fussy eating: when mealtimes feel like more than a phase">
+<meta property="og:description" content="Why eating is so complex for some children, and gentle ways to take the pressure down at mealtimes.">
+<meta property="og:url" content="https://www.theotroom.co.uk/fussy-eating.html">
 <meta property="og:image" content="https://www.theotroom.co.uk/assets/reading-room.jpg">
 <meta name="twitter:card" content="summary_large_image">
 
@@ -541,44 +541,43 @@ footer a{ color:var(--paper) }
             border-bottom:2px solid var(--ochre); padding-bottom:2px }
 .rr-back a:hover{ color:var(--ochre) }
 
-/* ---------- reading room index: featured + list ---------- */
-.rr-featured{ border-top:2px solid var(--petrol); padding-top:22px;
-              margin-top:clamp(28px,4vw,48px) }
-.rr-cat{ font-size:11px; font-weight:700; letter-spacing:.18em; text-transform:uppercase;
-         color:var(--ochre); margin-bottom:12px }
-.rr-feat-title{ font-family:'Fraunces',Georgia,serif; font-weight:600;
-                font-variation-settings:'SOFT' 0,'WONK' 0;
-                font-size:clamp(24px,3.4vw,38px); line-height:1.15; letter-spacing:-.01em;
-                max-width:20ch; margin-bottom:8px }
-.rr-feat-title a{ text-decoration:none; color:var(--petrol) }
-.rr-feat-title a:hover{ color:var(--ochre) }
-.rr-feat-date{ font-size:13px; color:var(--petrol-25); margin-bottom:16px }
-.rr-feat-excerpt{ font-size:16px; color:var(--petrol-70); line-height:1.62;
-                  max-width:60ch; margin-bottom:18px }
-.rr-feat-link a{ font-weight:700; text-decoration:none;
-                 border-bottom:2px solid var(--ochre); padding-bottom:3px }
-.rr-feat-link a:hover{ color:var(--ochre) }
-/* two-column layout: featured article on the left, article list on the right */
-.rr-layout{ display:grid; grid-template-columns:minmax(0,1fr) clamp(220px,26%,300px);
-            gap:clamp(28px,4vw,60px); align-items:start; margin-top:clamp(28px,4vw,48px) }
-@media (max-width:820px){ .rr-layout{ grid-template-columns:1fr; gap:clamp(30px,6vw,44px) } }
-.rr-main .rr-featured{ margin-top:0 }
-.rr-side{ border-top:2px solid var(--petrol); padding-top:18px }
-.rr-side-head{ font-family:'Fraunces',Georgia,serif; font-weight:600;
-               font-variation-settings:'SOFT' 0,'WONK' 0;
-               font-size:11.5px; letter-spacing:.18em; text-transform:uppercase;
-               color:var(--ochre); margin-bottom:4px }
-.rr-side-list{ list-style:none }
-.rr-side-list li{ border-top:1px solid var(--rule); padding:14px 0 }
-.rr-side-list li:first-child{ border-top:0 }
-.rr-side-list a{ font-family:'Fraunces',Georgia,serif; font-weight:600;
-                 font-variation-settings:'SOFT' 0,'WONK' 0;
-                 font-size:15.5px; line-height:1.25; text-decoration:none;
-                 color:var(--petrol); display:block }
-.rr-side-list a:hover{ color:var(--ochre) }
-.rr-side-meta{ display:block; font-size:12px; color:var(--petrol-25); margin-top:5px }
+/* ---------- article ---------- */
+.art{ padding:clamp(34px,5vw,64px) 0 clamp(48px,6vw,88px) }
+.art-kicker{ font-size:11.5px; font-weight:700; letter-spacing:.2em; text-transform:uppercase;
+             color:var(--ochre); margin-bottom:16px }
+.art-title{
+  font-family:'Fraunces',Georgia,serif; font-weight:600;
+  font-variation-settings:'SOFT' 0,'WONK' 0;
+  font-size:clamp(28px,4.6vw,50px); line-height:1.14; letter-spacing:-.01em;
+  max-width:22ch; margin-bottom:14px;
+}
+.art-meta{ font-size:13.5px; color:var(--petrol-25); margin-bottom:clamp(26px,3.6vw,44px) }
+.art-body{ max-width:66ch }
+.art-body p{ font-size:clamp(16px,1.15vw,17.5px); line-height:1.72; color:var(--petrol);
+             margin-bottom:20px }
+.art-body p.lead{
+  font-family:'Fraunces',Georgia,serif; font-weight:400;
+  font-variation-settings:'SOFT' 0,'WONK' 0;
+  font-size:clamp(19px,2vw,24px); line-height:1.45; color:var(--petrol);
+  margin-bottom:26px;
+}
+.art-body em{ font-style:italic }
+.art-body a{ color:var(--petrol); text-decoration:none;
+             border-bottom:1.5px solid var(--ochre); font-weight:500 }
+.art-body a:hover{ color:var(--ochre) }
+.art-back{ margin-top:clamp(40px,5vw,64px); padding-top:22px; border-top:1px solid var(--rule) }
+.art-back a{ font-weight:700; text-decoration:none;
+             border-bottom:2px solid var(--ochre); padding-bottom:2px }
+.art-back a:hover{ color:var(--ochre) }
 </style>
 
+<style>
+  .art-body ul{ list-style:none; margin:0 0 1.15em; padding:0 }
+  .art-body li{ position:relative; padding-left:22px; margin:0 0 .55em; line-height:1.7 }
+  .art-body li::before{ content:""; position:absolute; left:4px; top:.62em; width:6px; height:6px;
+    background:var(--ochre); border-radius:50% }
+  .art-body li strong{ color:var(--petrol) }
+</style>
 </head>
 <body>
 
@@ -613,70 +612,27 @@ footer a{ color:var(--paper) }
 
 <main id="top">
 
-  <section class="rr-hero">
+  <article class="art">
     <div class="wrap">
-      <h1 class="rr-title">The Reading Room</h1>
-      <p class="rr-standfirst">Notes from practice, research and resources, written for families
-      and school staff. New pieces added over time.</p>
-    </div>
-  </section>
+      <p class="art-kicker">The Reading Room &middot; Notes from practice</p>
+      <h1 class="art-title">Fussy eating: when mealtimes feel like more than a phase</h1>
+      <p class="art-meta">October 2026</p>
 
-  <section class="band">
-    <div class="wrap">
-      <div class="rr-layout">
-
-        <!-- LEFT: featured (latest) article -->
-        <div class="rr-main">
-          <article class="rr-featured">
-            <p class="rr-cat">Notes from practice</p>
-            <h2 class="rr-feat-title"><a href="interoception.html">Starting on the Inside: Why Interoception Matters</a></h2>
-            <p class="rr-feat-date">August 2026</p>
-            <p class="rr-feat-excerpt">Occupational therapists work with eight senses, not five.
-            Interoception, the sense of what&rsquo;s happening inside our own bodies, is well
-            established in theory but easily missed in practice. Why it belongs at the start of the process,
-            not the middle.</p>
-            <p class="rr-feat-link"><a href="interoception.html">Read the article&ensp;&rarr;</a></p>
-          </article>
-        </div>
-
-        <!-- RIGHT: list of every article, newest first.
-             To add a new piece, put a new <li> at the TOP of this list:
-          <li>
-            <a href="slug.html">Article title</a>
-            <span class="rr-side-meta">Category &middot; Mon YYYY</span>
-          </li>
-        -->
-        <aside class="rr-side">
-          <h2 class="rr-side-head">All articles</h2>
-          <ul class="rr-side-list">
-            <li>
-              <a href="ot-assessment.html">What happens in a children’s OT assessment?</a>
-              <span class="rr-side-meta">Notes from practice &middot; Oct 2026</span>
-            </li>
-            <li>
-              <a href="handwriting-help.html">Handwriting that feels like a battle: where to start</a>
-              <span class="rr-side-meta">Notes from practice &middot; Oct 2026</span>
-            </li>
-            <li>
-              <a href="sensory-sensitivity.html">Making sense of sensory sensitivity</a>
-              <span class="rr-side-meta">Notes from practice &middot; Oct 2026</span>
-            </li>
-            <li>
-              <a href="fussy-eating.html">Fussy eating: when it is more than a phase</a>
-              <span class="rr-side-meta">Notes from practice &middot; Oct 2026</span>
-            </li>
-            <li>
-              <a href="interoception.html">Starting on the Inside: Why Interoception Matters</a>
-              <span class="rr-side-meta">Notes from practice &middot; Aug 2026</span>
-            </li>
-          </ul>
-        </aside>
-
+      <div class="art-body">
+        <p class="lead">Almost every family hits a fussy stage. But for some children, mealtimes are a daily source of stress, the list of safe foods is short, and it is about far more than preference.</p>
+        <p>Eating is one of the most complex things we ask children to do. It pulls together smell, taste, texture, temperature, the sound of chewing, sitting still, and feeling safe enough to try something new. If one of those is a genuine barrier, a new food is not fussiness, it is a lot to manage all at once.</p>
+        <p>Three gentle starting points:</p>
+        <ul>
+          <li><strong>Take the pressure down.</strong> “No thank you” being allowed tends to grow the list over time; pressure usually shrinks it.</li>
+          <li><strong>Let them explore without eating.</strong> Touching, smelling and playing with a food are real steps on the way to tasting it.</li>
+          <li><strong>Keep safe foods safe.</strong> Offer new foods alongside the trusted ones, not instead of them.</li>
+        </ul>
+        <p>If the range of foods is very narrow, weight is a worry, or mealtimes are genuinely distressing, it is worth getting help and ruling out other causes. For most children, though, taking the pressure down and giving them room to explore is where change quietly begins.</p>
       </div>
 
-      <p class="rr-back"><a href="index.html">&larr;&ensp;Back to The OT Room</a></p>
+      <p class="art-back"><a href="reading-room.html">&larr;&ensp;Back to The Reading Room</a></p>
     </div>
-  </section>
+  </article>
 
 </main>
 
